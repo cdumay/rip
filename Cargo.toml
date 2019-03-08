@@ -1,0 +1,20 @@
+[package]
+name = "rip"
+description = "Rest In Peace"
+version = "0.1.0"
+authors = ["Cédric Dumay <cedric.dumay@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+mime = "0.3"
+url = {version = "1.7", features = ["serde"] }
+hostname = "0.1"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+url_serde = "0.2"
+hyper = "0.12"
+
+[[example]]
+name = "hello"
+path = "examples/hello.rs"
