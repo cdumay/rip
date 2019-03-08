@@ -1,12 +1,10 @@
-use url::Url;
-
 pub trait DocumentationBuilder {
-    fn new(url: Url) -> Self;
+    fn new(url: url::Url) -> Self;
     fn set_description(self, description: String) -> Self;
 }
 
 pub trait DocumentationGetters {
-    fn url(&self) -> &Url;
+    fn url(&self) -> &url::Url;
     fn description(&self) -> &Option<String>;
 }
 
@@ -16,13 +14,13 @@ pub trait DocumentationSetters {
 
 #[derive(Debug)]
 pub struct Documentation {
-    url: Url,
+    url: url::Url,
     description: Option<String>,
 }
 
 
 impl DocumentationBuilder for Documentation {
-    fn new(url: Url) -> Documentation {
+    fn new(url: url::Url) -> Documentation {
         Documentation {
             url,
             description: None,
@@ -35,7 +33,7 @@ impl DocumentationBuilder for Documentation {
 }
 
 impl DocumentationGetters for Documentation {
-    fn url(&self) -> &Url { &self.url }
+    fn url(&self) -> &url::Url { &self.url }
     fn description(&self) -> &Option<String> { &self.description }
 }
 

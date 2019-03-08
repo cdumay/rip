@@ -7,7 +7,6 @@ use crate::openapi::v3::path::PathItem;
 use crate::openapi::v3::server::Server;
 use crate::openapi::v3::tag::Tag;
 use crate::rest::application::ApplicationGetters;
-use crate::rest::server::ServerGetters;
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 pub struct Spec {
@@ -50,4 +49,3 @@ impl<A: ApplicationGetters> From<&A> for Spec {
         }
     }
 }
-

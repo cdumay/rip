@@ -1,7 +1,5 @@
 use std::collections::BTreeMap;
 
-use url::Url;
-
 pub trait ServerVariableBuilder {
     fn new(values: Vec<String>, default: String) -> Self;
     fn set_description(self, description: String) -> Self;
@@ -50,13 +48,13 @@ impl ServerVariableSetters for ServerVariable {
 }
 
 pub trait ServerBuilder {
-    fn new(url: Url) -> Self;
+    fn new(url: url::Url) -> Self;
     fn set_description(self, description: String) -> Self;
     fn set_variables(self, variables: BTreeMap<String, ServerVariable>) -> Self;
 }
 
 pub trait ServerGetters {
-    fn url(&self) -> &Url;
+    fn url(&self) -> &url::Url;
     fn description(&self) -> &Option<String>;
     fn variables(&self) -> &BTreeMap<String, ServerVariable>;
 }
@@ -68,14 +66,14 @@ pub trait ServerSetters {
 
 #[derive(Debug)]
 pub struct Server {
-    url: Url,
+    url: url::Url,
     description: Option<String>,
     variables: BTreeMap<String, ServerVariable>,
 }
 
 
 impl ServerBuilder for Server {
-    fn new(url: Url) -> Server {
+    fn new(url: url::Url) -> Server {
         Server {
             url,
             description: None,
@@ -93,7 +91,7 @@ impl ServerBuilder for Server {
 }
 
 impl ServerGetters for Server {
-    fn url(&self) -> &Url { &self.url }
+    fn url(&self) -> &url::Url { &self.url }
     fn description(&self) -> &Option<String> { &self.description }
     fn variables(&self) -> &BTreeMap<String, ServerVariable> { &self.variables }
 }

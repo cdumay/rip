@@ -1,15 +1,13 @@
-use url::Url;
-
 pub trait LicenseGetters {
     fn name(&self) -> &String;
-    fn url(&self) -> &Option<Url>;
+    fn url(&self) -> &Option<url::Url>;
 }
 
 
 #[derive(Debug)]
 pub struct License {
     name: String,
-    url: Option<Url>,
+    url: Option<url::Url>,
 }
 
 impl License {
@@ -18,7 +16,7 @@ impl License {
             name: name.to_string(),
             url: match url {
                 None => None,
-                Some(data) => match Url::parse(data) {
+                Some(data) => match url::Url::parse(data) {
                     Err(_) => None,
                     Ok(url) => Some(url)
                 }
@@ -30,7 +28,7 @@ impl License {
 
 impl LicenseGetters for License {
     fn name(&self) -> &String { &self.name }
-    fn url(&self) -> &Option<Url> { &self.url }
+    fn url(&self) -> &Option<url::Url> { &self.url }
 }
 
 

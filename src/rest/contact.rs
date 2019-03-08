@@ -1,26 +1,24 @@
-use url::Url;
-
 pub trait ContactBuilder {
     fn new(name: String) -> Self;
-    fn set_url(self, url: Url) -> Self;
+    fn set_url(self, url: url::Url) -> Self;
     fn set_email(self, email: String) -> Self;
 }
 
 pub trait ContactGetters {
     fn name(&self) -> &String;
-    fn url(&self) -> &Option<Url>;
+    fn url(&self) -> &Option<url::Url>;
     fn email(&self) -> &Option<String>;
 }
 
 pub trait ContactSetters {
-    fn url_mut(&mut self) -> &mut Option<Url>;
+    fn url_mut(&mut self) -> &mut Option<url::Url>;
     fn email_mut(&mut self) -> &mut Option<String>;
 }
 
 #[derive(Debug)]
 pub struct Contact {
     name: String,
-    url: Option<Url>,
+    url: Option<url::Url>,
     email: Option<String>,
 }
 
@@ -33,7 +31,7 @@ impl ContactBuilder for Contact {
             email: None,
         }
     }
-    fn set_url(mut self, url: Url) -> Contact {
+    fn set_url(mut self, url: url::Url) -> Contact {
         self.url = Some(url);
         self
     }
@@ -45,11 +43,11 @@ impl ContactBuilder for Contact {
 
 impl ContactGetters for Contact {
     fn name(&self) -> &String { &self.name }
-    fn url(&self) -> &Option<Url> { &self.url }
+    fn url(&self) -> &Option<url::Url> { &self.url }
     fn email(&self) -> &Option<String> { &self.email }
 }
 
 impl ContactSetters for Contact {
-    fn url_mut(&mut self) -> &mut Option<Url> { &mut self.url }
+    fn url_mut(&mut self) -> &mut Option<url::Url> { &mut self.url }
     fn email_mut(&mut self) -> &mut Option<String> { &mut self.email }
 }
